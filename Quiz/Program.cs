@@ -98,12 +98,12 @@ namespace QuizApp
 
             foreach (var question in questions)
             {
-                Console.WriteLine("Fråga: " + question.QuestionText);
+                Console.WriteLine("Question: " + question.QuestionText);
                 for (int i = 0; i < question.Answers.Count; i++)
                 {
                     Console.WriteLine($"{i + 1}: {question.Answers[i].AnswerText}");
                 }
-                Console.Write("Ditt svar (ange nummer): ");
+                Console.Write("Your answer (Choose a number): ");
                 var input = Console.ReadLine();
 
                 if (int.TryParse(input, out int selectedIndex))
@@ -112,27 +112,27 @@ namespace QuizApp
                     {
                         if (question.Answers[selectedIndex - 1].IsCorrect)
                         {
-                            Console.WriteLine("Rätt svar!");
+                            Console.WriteLine("Right answer!");
                             score++;
                         }
                         else
                         {
-                            Console.WriteLine("Fel svar!");
+                            Console.WriteLine("Wrong answer!");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Ogiltigt val.");
+                        Console.WriteLine("invalid choice.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Ogiltig inmatning.");
+                    Console.WriteLine("invalid.");
                 }
                 Console.WriteLine();
             }
 
-            Console.WriteLine($"Quiz klart! Din poäng: {score}/{questions.Count}");
+            Console.WriteLine($"Quiz done! your points: {score}/{questions.Count}");
         }
     }
 
@@ -146,10 +146,10 @@ namespace QuizApp
             var repository = new QuizRepository(connectionString);
             var quizManager = new QuizManager(repository);
 
-            Console.WriteLine("Välkommen till QuizApp!");
+            Console.WriteLine("Welcome to PigeonQuiz!");
             quizManager.RunQuiz();
 
-            Console.WriteLine("Tryck på valfri tangent för att avsluta...");
+            Console.WriteLine("Press a key to end the game!");
             Console.ReadKey();
         }
     }
